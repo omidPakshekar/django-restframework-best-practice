@@ -6,10 +6,10 @@ from .models import Product
 from .validators import validate_title, unique_product_title
 
 from api.serializer import UserPublicSerializer
-
+from api.serializer import ProductInlineSerializer
 
 class ProductSerializer(serializers.ModelSerializer):
-    owner = UserPublicSerializer(source='user', read_only=True)
+    # owner = UserPublicSerializer(source='user', read_only=True)
     my_discount = serializers.SerializerMethodField(read_only=True)
     edit_url = serializers.SerializerMethodField(read_only=True)
     url = serializers.HyperlinkedIdentityField(
@@ -19,11 +19,11 @@ class ProductSerializer(serializers.ModelSerializer):
     email = serializers.EmailField( write_only=True)
     # email = serializers.EmailField(source='user.email', read_only=True)
     title = serializers.CharField(validators=[unique_product_title])
-
+    # related_products = ProductInlineSerializer(source='user.product_set.all', many=True, read_only=True)
     class Meta:
         model = Product
         fields = [
-            'owner',
+            # 'owner',
             'email',
             'url',
             'edit_url',
@@ -32,6 +32,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'price',
             'sale_price',
             'my_discount',
+            # 'related_products',
         ]
 
     # def validate_title(self, value):

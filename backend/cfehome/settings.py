@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # my app
     'api',
     'products',
+    'search',
 
 ]
 
@@ -140,5 +141,7 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PERMISSION_CLASSES" : [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly", # GET
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5
 }
