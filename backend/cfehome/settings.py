@@ -149,8 +149,6 @@ REST_FRAMEWORK = {
 
 # envrioinet vairables -> django-dotenv -> result .env
 ALGOLIA = {
-    'APPLICATION_ID': 'OK09IW9FRF',
-    'API_KEY': 'dbe4ec98dd2b5ed94813490d6c531621',
-    'INDEX_PREFIX' : 'cfe'
+   
 
 }
