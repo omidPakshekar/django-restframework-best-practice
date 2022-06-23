@@ -34,6 +34,8 @@ class ProductSerializer(serializers.ModelSerializer):
             'my_discount',
             # 'related_products',
             'public',
+            'path',
+            'endpoint',
         ]
 
     # def validate_title(self, value):

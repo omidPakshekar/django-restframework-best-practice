@@ -39,9 +39,21 @@ class Product(models.Model):
     def is_public(self) -> bool:
         return self.public
     
+    def get_absolute_url(self):
+        return f"/api/products/{self.pk}/"
+    
+    @property
+    def endpoint(self):
+        return self.get_absolute_url()
+
     @property
     def sale_price(self):
         return "%.2f" % (float(self.price) * 0.8)
+
+    @property
+    def path(self):
+        return f"/products/{self.pk}/"
+
 
     def get_discount(self):
         return "134"
