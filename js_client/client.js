@@ -176,4 +176,48 @@ function validJWTToken() {
 }
 
 
-validJWTToken()
+const searchClient = algoliasearch('OK09IW9FRF', 'dbe4ec98dd2b5ed94813490d6c531621');
+
+   
+const search = instantsearch({
+  indexName: 'cfe_Product',
+  searchClient,
+});
+
+search.addWidgets([
+  instantsearch.widgets.searchBox({
+    container: '#searchbox',
+  }),
+
+  instantsearch.widgets.refinementList({
+    container: "#user-list",
+    attribute : 'user'
+  }),
+
+  instantsearch.widgets.refinementList({
+    container: "#public-list",
+    attribute : 'public'
+  }),
+
+  instantsearch.widgets.clearRefinements({
+    container: "#clear-refinements"
+  }),
+
+  instantsearch.widgets.hits({
+    container: '#hits',
+    templates: {
+        item: `
+            <div>
+            <div>{{#helpers.highlight}}{"attribute" : "title"}{{/helpers.highlight}}</div> 
+                <div>{{ body }}</div>
+                <div>{{price}} {{ user }}</div>
+            </div>`
+        
+        
+    }
+  })
+]);
+
+search.start();
+
+
